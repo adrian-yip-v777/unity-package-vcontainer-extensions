@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace AYip.VContainers.Editor
+namespace vz777.VContainers.Editor
 {
     public class AutoInjectionGameObjectMissingException : InvalidRegistrationException
     {

@@ -8,7 +8,7 @@ using VContainer;
 using VContainer.Unity;
 using Debug = UnityEngine.Debug;
 
-namespace AYip.VContainers.Editor
+namespace vz777.VContainers.Editor
 {
     public class RegistrationValidator : EditorWindow
     {
