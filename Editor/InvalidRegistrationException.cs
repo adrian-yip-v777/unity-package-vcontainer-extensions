@@ -1,6 +1,6 @@
 using System;
 
-namespace AYip.VContainers.Editor
+namespace vz777.VContainers.Editor
 {
     public class InvalidRegistrationException : Exception
     {

@@ -1,8 +1,8 @@
 {
-    "name": "AYip.VContainer.Editor",
+    "name": "vz777.VContainer.Editor",
     "rootNamespace": "",
     "references": [
-        "AYip.Foundation",
+        "vz777.Foundation",
         "VContainer"
     ],
     "includePlatforms": [
