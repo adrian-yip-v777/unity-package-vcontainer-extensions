@@ -1,14 +1,14 @@
 {
-  "name": "com.adrianyip.vcontainer.extensions",
+  "name": "com.vz777.vcontainer-extensions",
   "version": "0.2.1",
-  "displayName": "AYip VContainer Extensions",
+  "displayName": "VContainer Extensions",
   "description": "This is a simple extension package for VContainer",
   "unity": "2019.1",
-  "documentationUrl": "https://github.com/adrianyip-1222/ayip-package-vcontainer-extensions",
-  "changelogUrl": "https://github.com/adrianyip-1222/ayip-package-vcontainer-extensions/blob/0.2.1/CHANGELOG.md",
-  "licensesUrl": "https://github.com/adrianyip-1222/ayip-package-vcontainer-extensions/blob/0.2.1/LICENSE",
+  "documentationUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions",
+  "changelogUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.1/CHANGELOG.md",
+  "licensesUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.1/LICENSE",
   "dependencies": {
-    "com.adrianyip.foundation": "0.2.2",
+    "com.vz777.foundation": "0.2.2",
     "jp.hadashikick.vcontainer": "1.16.8"
   },
   "keywords": [
@@ -18,8 +18,8 @@
     "inject"
   ],
   "author": {
-    "name": "Yip Ka Ming",
-    "email": "adrianyip1222@gmail.com",
-    "url": "https://github.com/adrianyip-1222"
+    "name": "Visionaries 777",
+    "email": "adrian@visionaries.com",
+    "url": "https://www.vz777.com/"
   }
 }

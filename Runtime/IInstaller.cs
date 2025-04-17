@@ -1,6 +1,6 @@
 using VContainer;
 
-namespace AYip.VContainer
+namespace vz777.VContainer
 {
     public interface IInstaller
     {
