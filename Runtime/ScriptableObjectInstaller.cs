@@ -1,7 +1,7 @@
 using UnityEngine;
 using VContainer;
 
-namespace AYip.VContainer
+namespace vz777.VContainer
 {
     public abstract class ScriptableObjectInstaller : ScriptableObject, IInstaller
     {

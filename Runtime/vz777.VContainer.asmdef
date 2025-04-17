@@ -1,13 +1,10 @@
 {
-    "name": "AYip.VContainer.Editor",
-    "rootNamespace": "",
+    "name": "vz777.VContainer",
+    "rootNamespace": "vz777.VContainer",
     "references": [
-        "AYip.Foundation",
-        "VContainer"
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

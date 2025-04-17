@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AYip.Foundations;
+using vz777.Foundations;
 using UnityEngine;
 
-namespace AYip.VContainers.Editor
+namespace vz777.VContainers.Editor
 {
     public class AutoInjectionGameObjectMissingException : InvalidRegistrationException
     {
