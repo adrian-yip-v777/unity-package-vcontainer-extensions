@@ -1,4 +1,8 @@
 # Changelog
+## 0.2.3
+- Fixed incorrect package name
+- Fixed license
+
 ## 0.2.2
 - Updated dependency of Foundation package to 1.0.0
 
