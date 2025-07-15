@@ -1,14 +1,14 @@
 {
   "name": "com.vz777.vcontainer-extensions",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "displayName": "VContainer Extensions",
   "description": "This is a simple extension package for VContainer",
   "unity": "2019.1",
   "documentationUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions",
-  "changelogUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.1/CHANGELOG.md",
-  "licensesUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.1/LICENSE",
+  "changelogUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.2/CHANGELOG.md",
+  "licensesUrl": "https://github.com/adrian-yip-v777/unity-package-vcontainer-extensions/blob/0.2.2/LICENSE",
   "dependencies": {
-    "com.vz777.foundation": "0.2.2",
+    "com.vz777.foundation": "1.0.0",
     "jp.hadashikick.vcontainer": "1.16.8"
   },
   "keywords": [
