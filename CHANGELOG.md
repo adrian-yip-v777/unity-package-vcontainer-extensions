@@ -1,4 +1,7 @@
 # Changelog
+## 0.3.1
+- Fixed NonLazy doesn't work on interface registration
+
 ## 0.3.0
 - Added NonLazy function for registration.
 
