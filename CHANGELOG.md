@@ -1,4 +1,7 @@
 # Changelog
+## 0.3.0
+- Added NonLazy function for registration.
+
 ## 0.2.3
 - Fixed incorrect package name
 - Fixed license
