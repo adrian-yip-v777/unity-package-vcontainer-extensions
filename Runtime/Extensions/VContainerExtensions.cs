@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using VContainer;
@@ -24,7 +25,8 @@ namespace vz777.VContainer
             if (implementationTypeField == null)
                 throw new VContainerException(null, "Cannot access ImplementationType field via reflection.");
 
-            if (implementationTypeField.GetValue(builder) is not Type implementationType)
+            var implementationType = implementationTypeField.GetValue(builder) as Type;
+            if (implementationType == null)
                 throw new VContainerException(null, "No ImplementationType found for the registration.");
 
             // Access InterfaceTypes field via reflection if requested
@@ -39,23 +41,94 @@ namespace vz777.VContainer
                 }
             }
 
-            // Register build callback to resolve types
+            // Register build callback to resolve or instantiate types
             containerBuilder.RegisterBuildCallback(container =>
             {
                 try
                 {
-                    // Resolve implementation type
-                    container.Resolve(implementationType);
+                    object implementationInstance;
 
-                    // Resolve interface types if requested
-                    foreach (var interfaceType in interfaceTypes)
+                    // Try resolving the implementation type
+                    try
                     {
-                        container.Resolve(interfaceType);
+                        implementationInstance = container.Resolve(implementationType);
+                        Debug.Log($"NonLazy resolved type {implementationType.Name} successfully.");
+                    }
+                    catch (VContainerException)
+                    {
+                        try
+                        {
+                            // Get all public constructors
+                            var constructors = implementationType.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
+                            if (constructors.Length == 0)
+                                throw new VContainerException(implementationType, $"No public constructors found for {implementationType.Name}.");
+
+                            // Find a constructor with the most resolvable parameters
+                            ConstructorInfo selectedConstructor = null;
+                            object[] parameterInstances = null;
+                            var maxResolvableParameters = -1;
+
+                            foreach (var constructor in constructors.OrderByDescending(c => c.GetParameters().Length))
+                            {
+                                var parameters = constructor.GetParameters();
+                                var tempParameterInstances = new object[parameters.Length];
+                                var allParametersResolved = true;
+
+                                for (var i = 0; i < parameters.Length; i++)
+                                {
+                                    try
+                                    {
+                                        tempParameterInstances[i] = container.Resolve(parameters[i].ParameterType);
+                                    }
+                                    catch (VContainerException)
+                                    {
+                                        allParametersResolved = false;
+                                        break;
+                                    }
+                                }
+
+                                if (allParametersResolved && parameters.Length > maxResolvableParameters)
+                                {
+                                    selectedConstructor = constructor;
+                                    parameterInstances = tempParameterInstances;
+                                    maxResolvableParameters = parameters.Length;
+                                }
+                            }
+
+                            if (selectedConstructor == null)
+                                throw new VContainerException(implementationType, $"No constructor with resolvable parameters found for {implementationType.Name}.");
+
+                            // Instantiate with resolved parameters
+                            implementationInstance = selectedConstructor.Invoke(parameterInstances);
+                            container.Inject(implementationInstance);
+                            Debug.Log($"NonLazy instantiated and injected {implementationType.Name} successfully.");
+                        }
+                        catch (Exception instEx)
+                        {
+                            Debug.LogError($"Failed to instantiate or inject {implementationType.Name}: {instEx.Message}");
+                        }
+                    }
+
+                    // Try resolving interface types if requested
+                    if (resolveInterfaces)
+                    {
+                        foreach (var interfaceType in interfaceTypes)
+                        {
+                            try
+                            {
+                                container.Resolve(interfaceType);
+                                Debug.Log($"NonLazy resolved interface {interfaceType.Name} successfully.");
+                            }
+                            catch (VContainerException ex)
+                            {
+                                Debug.LogWarning($"Failed to resolve interface {interfaceType.Name}: {ex.Message}. Interface should be satisfied by implementation instance.");
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"Failed to resolve types: {ex.Message}");
+                    Debug.LogError($"Unexpected error in NonLazy resolution: {ex.Message}");
                 }
             });
 
