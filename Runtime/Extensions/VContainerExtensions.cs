@@ -52,7 +52,6 @@ namespace vz777.VContainer
                     try
                     {
                         implementationInstance = container.Resolve(implementationType);
-                        Debug.Log($"NonLazy resolved type {implementationType.Name} successfully.");
                     }
                     catch (VContainerException)
                     {
@@ -101,7 +100,6 @@ namespace vz777.VContainer
                             // Instantiate with resolved parameters
                             implementationInstance = selectedConstructor.Invoke(parameterInstances);
                             container.Inject(implementationInstance);
-                            Debug.Log($"NonLazy instantiated and injected {implementationType.Name} successfully.");
                         }
                         catch (Exception instEx)
                         {
@@ -117,7 +115,6 @@ namespace vz777.VContainer
                             try
                             {
                                 container.Resolve(interfaceType);
-                                Debug.Log($"NonLazy resolved interface {interfaceType.Name} successfully.");
                             }
                             catch (VContainerException ex)
                             {
